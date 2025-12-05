@@ -1,0 +1,318 @@
+
+
+FINAL DATABASE STRUCTURE :
+
+	Table Name	Primary Key
+	----------  -------------
+	authors			id
+	book			id
+	adaptation		(book_id, title)
+	book_review		(book_id, author)
+
+
+
+
+The first table shows the author data in the following columns:
+
+	id – The author’s unique ID within the database.
+	name – The author’s name.
+	birth_year – The year when that author was born.
+	death_year – The year when that author died (the field is empty if they are still alive).
+	
+	
+			CREATE TABLE authors (
+			id          NUMBER PRIMARY KEY,
+			name        VARCHAR2(100) NOT NULL,
+			birth_year  NUMBER(4) NOT NULL,
+			death_year  NUMBER(4) NULL
+		);
+
+	
+	
+	
+		INSERT INTO authors (id, name, birth_year, death_year) 
+		VALUES (1, 'Marcella Cole', 1983, NULL);
+
+		INSERT INTO authors (id, name, birth_year, death_year) 
+		VALUES (2, 'Lisa Mullins', 1891, 1950);
+
+		INSERT INTO authors (id, name, birth_year, death_year) 
+		VALUES (3, 'Dennis Stokes', 1935, 1994);
+
+		INSERT INTO authors (id, name, birth_year, death_year) 
+		VALUES (4, 'Randolph Vasquez', 1957, 2004);
+
+		INSERT INTO authors (id, name, birth_year, death_year) 
+		VALUES (5, 'Daniel Branson', 1965, 1990);
+		
+		COMMIT;
+
+		
+		SELECT * FROM authors;
+
+
+	
+The second table, book,  shows details about books. The columns are:
+
+	id – The ID of a given book.
+	author_id – The ID of the author who wrote that book.
+	title – The book’s title.
+	publish_year – The year when the book was published.
+	publishing_house – The name of the publishing house that printed the book.
+	rating – The average rating for the book.
+	These are the first five rows:
+	
+	
+		CREATE TABLE book (
+			id                NUMBER PRIMARY KEY,
+			author_id         NUMBER,
+			title             VARCHAR2(200) NOT NULL,
+			publish_year      NUMBER(4) NOT NULL,
+			publishing_house  VARCHAR2(150) NOT NULL,
+			rating            NUMBER(2,1),
+			CONSTRAINT fk_book_author
+				FOREIGN KEY (author_id)
+				REFERENCES authors(id)
+		);
+
+		
+		INSERT INTO book (id, author_id, title, publish_year, publishing_house, rating)
+		VALUES (1, NULL, 'Soulless girl', 2008, 'Golden Albatros', 4.3);
+
+		INSERT INTO book (id, author_id, title, publish_year, publishing_house, rating)
+		VALUES (2, NULL, 'Weak Heart', 1980, 'Diarmud Inc.', 3.8);
+
+		INSERT INTO book (id, author_id, title, publish_year, publishing_house, rating)
+		VALUES (3, 4, 'Faith Of Light', 1995, 'White Cloud Press', 4.3);
+
+		INSERT INTO book (id, author_id, title, publish_year, publishing_house, rating)
+		VALUES (4, NULL, 'Memory Of Hope', 2000, 'Rutis Enterprises', 2.7);
+
+		INSERT INTO book (id, author_id, title, publish_year, publishing_house, rating)
+		VALUES (5, 6, 'Warrior Of Wind', 2005, 'Maverick', 4.6);
+		
+		COMMIT;
+
+
+		SELECT * FROM book;
+
+
+The adaptation table has the following columns:
+
+		book_id – The ID of the adapted book.
+		type – The type of adaptation (e.g. movie, game, play, musical).
+		title – The name of this adaptation.
+		release_year – The year when the adaptation was created.
+		rating – The average rating for the adaptation.
+
+
+		CREATE TABLE adaptation (
+			book_id        NUMBER NOT NULL,
+			type           VARCHAR2(50) NOT NULL,
+			title          VARCHAR2(200) NOT NULL,
+			release_year   NUMBER(4) NOT NULL,
+			rating         NUMBER(3,1),
+			CONSTRAINT adaptation_pk PRIMARY KEY (book_id, title),
+			CONSTRAINT fk_adaptation_book
+				FOREIGN KEY (book_id)
+				REFERENCES book(id)
+		);
+
+
+		INSERT INTO adaptation (book_id, type, title, release_year, rating)
+		VALUES (1, 'movie', 'Gone With The Wolves: The Beginning', 2008, 3);
+
+		INSERT INTO adaptation (book_id, type, title, release_year, rating)
+		VALUES (3, 'movie', 'Companions Of Tomorrow', 2001, 4.2);
+
+		INSERT INTO adaptation (book_id, type, title, release_year, rating)
+		VALUES (5, 'movie', 'Homeless Warrior', 2008, 4);
+
+		INSERT INTO adaptation (book_id, type, title, release_year, rating)
+		VALUES (2, 'movie', 'Blacksmith With Silver', 2014, 4.3);
+
+		INSERT INTO adaptation (book_id, type, title, release_year, rating)
+		VALUES (4, 'movie', 'Patrons And Bearers', 2004, 3.2);
+		
+		COMMIT;
+		
+		SELECT * FROM adaptation;
+		
+The final table is book_review. It consists of the following columns:
+
+		book_id - The ID of a reviewed book.
+		review - The summary of the review.
+		author - The name of the review's author.
+		
+		CREATE TABLE book_review (
+			book_id   NUMBER NOT NULL,
+			review    VARCHAR2(500) NOT NULL,
+			author    VARCHAR2(150) NOT NULL,
+			CONSTRAINT book_review_pk PRIMARY KEY (book_id, author),
+			CONSTRAINT fk_review_book
+				FOREIGN KEY (book_id)
+				REFERENCES book(id)
+		);
+		
+		INSERT INTO book_review (book_id, review, author)
+		VALUES (1, 'An incredible book', 'Sylvia Jones');
+
+		INSERT INTO book_review (book_id, review, author)
+		VALUES (1, 'Great, although it has some flaws', 'Jessica Parker');
+
+		INSERT INTO book_review (book_id, review, author)
+		VALUES (2, 'Dennis Stokes takes the reader for a ride full of emotions', 'Thomas Green');
+
+		INSERT INTO book_review (book_id, review, author)
+		VALUES (3, 'Incredible craftsmanship of the author', 'Martin Freeman');
+
+		INSERT INTO book_review (book_id, review, author)
+		VALUES (4, 'Not the best book by this author', 'Jude Falth');
+
+		INSERT INTO book_review (book_id, review, author)
+		VALUES (5, 'Claudia Johnson at her best!', 'Joe Marqiz');
+
+		INSERT INTO book_review (book_id, review, author)
+		VALUES (6, 'I cannot recall more captivating plot', 'Alexander Durham');
+		
+		COMMIT;
+
+		SELECT * FROM book_review;
+
+
+	
+
+
+1. What is a Composite Primary Key?
+
+		A composite primary key is a primary key made using MORE THAN ONE column.
+
+		Example from your table:
+
+		PRIMARY KEY (book_id, title)
+		
+This means:
+
+		The combination of book_id + title must be unique.
+
+		Not just book_id alone.
+		Not just title alone.
+		But both together.
+		
+2. Why NOT use book_id alone as Primary Key?
+
+		Let’s look at your data:
+
+		book_id	title
+		1	Gone With The Wolves: The Beginning
+		3	Companions Of Tomorrow
+		5	Homeless Warrior
+		2	Blacksmith With Silver
+		4	Patrons And Bearers
+
+		Right now it looks fine.
+		But real life is different 👇
+
+		👉 One book can have:
+
+		A movie adaptation
+
+		A game adaptation
+
+		A TV series
+
+		A musical
+
+		Example future data:
+
+		book_id	title
+		1	Gone With The Wolves (Movie)
+		1	Gone With The Wolves (Game)
+		1	Gone With The Wolves (Play)
+
+		If book_id was the primary key:
+		❌ You could only store ONE adaptation per book
+		❌ All others would be rejected as duplicates
+
+		So book_id alone is NOT sufficient.
+		
+3. Why NOT use title alone as Primary Key?
+
+		Because titles are not guaranteed to be unique:
+
+		Different books can have adaptations with the same title:
+
+		book_id	title
+		1	The Return
+		5	The Return
+
+		If title was the primary key:
+		❌ Second insert would fail
+		❌ Data loss risk
+		❌ Bad real-world modeling
+
+4. Why (book_id + title) Works Perfectly
+
+		Together they guarantee uniqueness:
+
+		book_id	title	Unique?
+		1	Gone With The Wolves	✅
+		1	Gone With The Wolves (Game)	✅
+		2	Gone With The Wolves	✅
+
+		Because:
+
+		Same book_id ✅ but different title
+
+		Same title ✅ but different book_id
+
+		The pair is always unique
+
+		✅ This perfectly models "One book → Many adaptations".
+		
+5. Technical Benefits
+		Benefit	Why it Matters
+		Data Integrity	Prevents duplicate adaptations
+		Correct Relationship	Supports 1-to-many structure
+		Indexing	Faster searching using both values
+		No Artificial ID Needed	You don’t need an extra adaptation_id
+		
+6. When Should You NOT Use Composite Keys?
+
+	Use a single-column primary key when:
+
+	The table has only one unique identifier
+
+	You don’t want complex foreign keys
+
+	You want simpler joins
+	
+		adaptation_id NUMBER PRIMARY KEY
+		
+	But logically:
+	✅ Your composite key is more accurate modeling
+	✅ It represents the real-world rule:
+
+	One book can have many uniquely titled adaptations
+	
+7. Real-World Analogy
+
+		Think of:
+
+		(Country, Mobile Number)
+
+		Mobile numbers repeat across countries
+
+		Countries repeat across numbers
+
+		But together they are always unique
+
+		Same concept as:
+
+		(book_id, title)
+		
+Final Summary (Exam/Interview Ready)
+
+	A composite primary key is used when a single column cannot uniquely identify a row. 
+	In the adaptation table, one book can have multiple adaptations and adaptation titles may be repeated across books. 
+	Therefore, the combination of book_id and title is used as the primary key to ensure data uniqueness and maintain correct one-to-many relationships.

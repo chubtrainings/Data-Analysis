@@ -1,0 +1,154 @@
+Practice questions
+  1. create a table with the below specification:
+
+      Table name: Accounts
+
+      columns names :
+      account_id number(5), ( no duplicates or null values allowed)
+      account_name varchar(20)
+      account_type varchar(20) ,It can have only 2 types(SAVINGS) , create a check constraint name as chk_act_type to do that
+      join_date date , sysdate should be automatically inserted if not specified( use a constraint)
+      inital_deposit number(10), mininum of rs.10000 should be deposited,( use a constraint) constraint name as chk_intdepo
+      address varchar(50),
+      contactno number(10),
+      location varchar(20))
+	  
+	  
+			  -----------------------------
+			  
+
+				CREATE TABLE ACCOUNTS (
+					account_id       NUMBER(5) PRIMARY KEY,
+					account_name     VARCHAR2(20),
+					account_type     VARCHAR2(20)
+						CONSTRAINT chk_act_type CHECK (account_type IN ('SAVINGS', 'CURRENT')),
+					join_date        DATE DEFAULT SYSDATE,
+					initial_deposit  NUMBER(10)
+						CONSTRAINT chk_intdepo CHECK (initial_deposit >= 10000),
+					address          VARCHAR2(50),
+					contactno        NUMBER(10),
+					location         VARCHAR2(20)
+				);
+
+				INSERT INTO ACCOUNTS VALUES (1, 'Amit', 'SAVINGS', DEFAULT, 20000, 'Pune', 9876543210, 'MH');
+				INSERT INTO ACCOUNTS VALUES (2, 'Rahul', 'CURRENT', DEFAULT, 15000, 'Mumbai', 9988776655, 'MH');
+				
+			  
+			  ----------------------------
+
+      After creating the table, do the following
+  2. Add a not null constraint to contactno.
+  
+     --------------------------------------------
+	 ALTER TABLE ACCOUNTS MODIFY contactno NUMBER(10) not null;
+	 --------------------------------------------
+  
+  
+  3. Add a check constraint to location and it should be (NORTH,EAST,WEST,SOUTH).
+	--------------------------------------------------------------------------------------------------------
+	ALTER TABLE ACCOUNTS MODIFY location add constraint chk_location CHECK (location in (NORTH,EAST,WEST,SOUTH));
+	--------------------------------------------------------------------------------------------------------
+		
+  4. Modify the Account_type to have two options (SAVINGS and CURRENT).
+  5.Insert 5 records with the below values.
+
+    1,CHERRY,SAVINGS,10000,CHENNAI,9980499232,SOUTH
+    2,SAKTHI,CURRENT,12000,BANGALORE,9980493232,SOUTH
+    3,NEHA,SAVINGS,15000,PUNE,9980499242,NORTH
+    4,SHIVANI,CURRENT,10000,PUNE,9985499232,SOUTH
+    5,TEJA,SAVINGS,14000,ASSAM,9980499232,NORTH
+    6,KAVIYA,SAVINGS,20000,CHENNAI,9980439232,EAST
+    7,HASINI,CURRENT,17000,CHENNAI,9980239232,WEST
+	
+	
+	-----------------------------------------------------------------
+	INSERT INTO ACCOUNTS VALUES (3, 'NEHA', 'SAVINGS',DEFAULT, 15000, 'PUNE', 9980499242, 'NORTH');
+	INSERT INTO ACCOUNTS VALUES (4, 'SHIVANI', 'CURRENT',DEFAULT, 10000, 'PUNE', 9985499232, 'SOUTH');
+	INSERT INTO ACCOUNTS VALUES (5, 'TEJA', 'SAVINGS',DEFAULT, 14000, 'ASSAM', 9980499232, 'NORTH');
+	INSERT INTO ACCOUNTS VALUES (6, 'KAVIYA', 'SAVINGS',DEFAULT, 20000, 'CHENNAI', 9980439232, 'EAST');
+	INSERT INTO ACCOUNTS VALUES (7, 'HASINI', 'CURRENT',DEFAULT, 17000, 'CHENNAI', 9980239232, 'WEST');
+	INSERT INTO ACCOUNTS VALUES (8,'CHERRY','SAVINGS',DEFAULT, 10000,'CHENNAI',9980499232,'SOUTH');
+	INSERT INTO ACCOUNTS VALUES (9, 'SAKTHI', 'CURRENT',DEFAULT, 12000, 'BANGALORE', 9980493232, 'SOUTH');
+	
+	-----------------------------------------------------------------
+
+  6. Check how many constraints are there in ACCOUNTs table. Also, specify its type.
+	-------------------------------------------------------------------------
+	SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'ACCOUNTS';
+	-------------------------------------------------------------------------
+  
+  
+  
+  7. Check which columns have constraints
+  
+	-------------------------------------------------------------------------
+  
+					SELECT 
+						uc.constraint_name,
+						uc.constraint_type,
+						ucc.column_name,
+						uc.table_name
+					FROM 
+						user_constraints uc
+					JOIN 
+						user_cons_columns ucc
+					ON 
+						uc.constraint_name = ucc.constraint_name
+					WHERE 
+						uc.table_name = 'ACCOUNTS';
+						
+	-------------------------------------------------------------------------
+  
+  8. How many indexes are there for this table.
+		delete from accounts where account_id=1;
+  
+  9.Create a table TXN with following columns
+
+      column name :
+      account_id number(5)
+      account_name varchar2(20)
+      txn_date date, without null
+      txn_type varchar2(10)(DEPOSIT/WITHDRAWL) -> use check constraint
+      amount number(10)
+
+      after creating the table.
+
+      Add a foreign key for the TXN table referencing accounts(account_id)
+  10. Check how many constraints are there in ACCOUNTs/TXN table. Also, specify its type.
+  11. Check which columns have constraints on both tables
+  12. How many indexes are there for this table on both tables
+  13.Insert below records. If you get any errors, specify the reason why you were not able to do it and 
+  fix it.
+      1,CHERRY,sysdate,DEPOSIT,10000
+      8,SAI,sysdate,DEPOSIT,20000
+      4,SHIVANI,sysdate,WITHDRAWL,30000
+      4,SHIVANI,sysdate,DEPOSIT,40000
+      2,SAKTHI,sysdate,WITHDRAWL,2000
+  14. delete a record from accounts with accountid=1
+    
+  15. delete account_id=2 from accounts , and make sure that the records from TXN also deletes 
+  automatically. (use on delete cascade)
+  16. Disable all the constraints for accounts and txn( create a alter script for that)
+  17.insert below records
+      4,SHIVANI,sysdate,WITHDRAWL,10000
+      11,SHIVANI,sysdate,DEPOSIT,40000
+      10,SAKTHI,sysdate,WITHDRAWL,2000
+
+  18. Enable all the constraints for accounts and txn (without validating it)(create a alter script for that)
+  19. Check how many constraints are there in ACCOUNTs/TXN table. Also, specify its type
+  20. Check which columns have constraints on both tables
+  
+  
+   Table name: Accounts
+
+      columns names :
+      account_id number(5), ( no duplicates or null values allowed)
+      account_name varchar(20)
+      account_type varchar(20) ,It can have only 2 types(SAVINGS) , create a check constraint name as chk_act_type to do that
+      join_date date , sysdate should be automatically inserted if not specified( use a constraint)
+      inital_deposit number(10), mininum of rs.10000 should be deposited,( use a constraint) constraint name as chk_intdepo
+      address varchar(50),
+      contactno number(10),
+      location varchar(20))
+	  
+	  
