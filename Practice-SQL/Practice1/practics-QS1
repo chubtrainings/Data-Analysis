@@ -1,0 +1,40 @@
+SQL Practice Questions with Answers
+
+ Q1. How to find the 2nd highest salary from a table?
+✅ Answer:
+
+SELECT MAX(salary) FROM employees  
+WHERE salary < (SELECT MAX(salary) FROM employees);
+🔍 Q2. How to find duplicate values in a column?
+✅ Answer:
+
+SELECT name, COUNT(*) FROM employees  
+GROUP BY name  
+HAVING COUNT(*) > 1;
+🔍 Q3. How to select records that exist in one table but not in another?
+✅ Answer:
+
+SELECT * FROM employees  
+WHERE id NOT IN (SELECT employee_id FROM payroll);
+🔍 Q4. How to get the top 3 highest salaries? (MySQL)
+✅ Answer:
+
+SELECT DISTINCT salary FROM employees  
+ORDER BY salary DESC  
+LIMIT 3;
+🔍 Q5. How to fetch employees with the same salary?
+✅ Answer:
+
+SELECT * FROM employees e1  
+WHERE EXISTS (  
+  SELECT 1 FROM employees e2  
+  WHERE e1.salary = e2.salary AND e1.id <> e2.id  
+);
+🔍 Q6. How to get the department-wise highest salary?
+✅ Answer:
+
+SELECT department, MAX(salary) AS max_salary  
+FROM employees  
+GROUP BY department;
+
+
