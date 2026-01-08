@@ -1,0 +1,19 @@
+ORA-00942 because of the foreign key reference, not because of the SALES table itself.
+
+Let’s break it down clearly 👇
+
+❌ Root Cause (Very Common Oracle Issue)
+FOREIGN KEY (PROD_ID) REFERENCES PRODUCTS(PRODUCT_ID)
+
+
+Oracle is saying:
+
+I cannot see a table called PRODUCTS in your current schema (AKS)
+OR you don’t have privileges on it.
+
+Since your current user is AKS, Oracle looks for:
+
+AKS.PRODUCTS
+
+
+If that table does not exist, or exists in another schema, you get ORA-00942.
