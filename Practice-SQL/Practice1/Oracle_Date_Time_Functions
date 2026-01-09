@@ -1,0 +1,188 @@
+Below is a **complete, practical list of Oracle DATE & DATE-TIME functions**, grouped by category.
+(This covers what you’ll actually use in real projects 👍)
+
+---
+
+# 🗓️ Oracle DATE & DATE-TIME Functions
+
+## 1️⃣ Current Date / Time Functions
+
+| Function            | Description                            |
+| ------------------- | -------------------------------------- |
+| `SYSDATE`           | Current date & time (server timezone)  |
+| `CURRENT_DATE`      | Current date & time (session timezone) |
+| `SYSTIMESTAMP`      | Timestamp with time zone               |
+| `CURRENT_TIMESTAMP` | Timestamp in session timezone          |
+| `LOCALTIMESTAMP`    | Timestamp without time zone            |
+| `DBTIMEZONE`        | Database time zone                     |
+| `SESSIONTIMEZONE`   | Session time zone                      |
+
+```sql
+SELECT SYSDATE, SYSTIMESTAMP FROM dual;
+```
+
+---
+
+## 2️⃣ Date Arithmetic (Add / Subtract)
+
+| Function                 | Description          |
+| ------------------------ | -------------------- |
+| `+ / -`                  | Add or subtract days |
+| `ADD_MONTHS(date, n)`    | Add months           |
+| `MONTHS_BETWEEN(d1, d2)` | Difference in months |
+| `NEXT_DAY(date, 'DAY')`  | Next weekday         |
+| `LAST_DAY(date)`         | Last day of month    |
+
+```sql
+SELECT SYSDATE + 7, ADD_MONTHS(SYSDATE, 1) FROM dual;
+```
+
+---
+
+## 3️⃣ Date Difference (Days / Time)
+
+| Method                        | Result               |
+| ----------------------------- | -------------------- |
+| `date2 - date1`               | Days (with fraction) |
+| `TRUNC(date2) - TRUNC(date1)` | Whole days           |
+
+```sql
+SELECT end_date - start_date FROM dual;
+```
+
+---
+
+## 4️⃣ Date Formatting (DATE → STRING)
+
+| Function                | Description            |
+| ----------------------- | ---------------------- |
+| `TO_CHAR(date, format)` | Convert date to string |
+
+```sql
+SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') FROM dual;
+```
+
+---
+
+## 5️⃣ String → Date / Timestamp
+
+| Function                        | Description                |
+| ------------------------------- | -------------------------- |
+| `TO_DATE(char, format)`         | String → DATE              |
+| `TO_TIMESTAMP(char, format)`    | String → TIMESTAMP         |
+| `TO_TIMESTAMP_TZ(char, format)` | String → TIMESTAMP WITH TZ |
+
+```sql
+SELECT TO_DATE('2026-01-08', 'YYYY-MM-DD') FROM dual;
+```
+
+---
+
+## 6️⃣ Date Truncation & Rounding
+
+| Function             | Description          |
+| -------------------- | -------------------- |
+| `TRUNC(date, 'fmt')` | Remove smaller units |
+| `ROUND(date, 'fmt')` | Round date           |
+
+```sql
+SELECT TRUNC(SYSDATE, 'MM'), ROUND(SYSDATE, 'YYYY') FROM dual;
+```
+
+---
+
+## 7️⃣ Extract Parts of Date
+
+| Function                   | Description    |
+| -------------------------- | -------------- |
+| `EXTRACT(YEAR FROM date)`  | Extract year   |
+| `EXTRACT(MONTH FROM date)` | Extract month  |
+| `EXTRACT(DAY FROM date)`   | Extract day    |
+| `EXTRACT(HOUR FROM ts)`    | Extract hour   |
+| `EXTRACT(MINUTE FROM ts)`  | Extract minute |
+| `EXTRACT(SECOND FROM ts)`  | Extract second |
+
+```sql
+SELECT EXTRACT(YEAR FROM SYSDATE) FROM dual;
+```
+
+---
+
+## 8️⃣ Time Zone Functions
+
+| Function                | Description         |
+| ----------------------- | ------------------- |
+| `FROM_TZ(ts, tz)`       | Add TZ to timestamp |
+| `CAST(ts AS TIMESTAMP)` | Convert type        |
+| `AT TIME ZONE`          | Convert timezone    |
+| `SYS_EXTRACT_UTC(ts)`   | Convert to UTC      |
+
+```sql
+SELECT SYSTIMESTAMP AT TIME ZONE 'UTC' FROM dual;
+```
+
+---
+
+## 9️⃣ ISO / Week-Based Functions
+
+| Function                  | Description       |
+| ------------------------- | ----------------- |
+| `TRUNC(date, 'IW')`       | Start of ISO week |
+| `TO_CHAR(date, 'IW')`     | ISO week number   |
+| `TO_CHAR(date, 'YYYYIW')` | ISO year + week   |
+
+---
+
+## 🔟 Validation & Comparison Helpers
+
+| Function                 | Description         |
+| ------------------------ | ------------------- |
+| `NVL(date, SYSDATE)`     | Handle NULL dates   |
+| `COALESCE(date1, date2)` | First non-null date |
+| `GREATEST(d1, d2)`       | Latest date         |
+| `LEAST(d1, d2)`          | Earliest date       |
+
+---
+
+## 🚫 Functions Oracle Does NOT Have
+
+(From MySQL / SQL Server)
+
+| Function      | Status          |
+| ------------- | --------------- |
+| `DATEDIFF`    | ❌ Not in Oracle |
+| `DATE_FORMAT` | ❌ Not in Oracle |
+| `GETDATE()`   | ❌ Use `SYSDATE` |
+
+---
+
+## ⭐ Most Used in Real Projects
+
+✔ `SYSDATE`
+✔ `ADD_MONTHS`
+✔ `LAST_DAY`
+✔ `TO_CHAR` / `TO_DATE`
+✔ `TRUNC(date)`
+✔ `EXTRACT`
+
+---
+
+## 📌 Best Practice (Important)
+
+❌ Don’t rely on `NLS_DATE_FORMAT`
+✅ Always use explicit formats:
+
+```sql
+TO_DATE('2026-01-08', 'YYYY-MM-DD')
+```
+
+---
+
+If you want next:
+
+* 📊 **Business-day calculation**
+* 🕒 **Age calculation**
+* ⏱ **SLA / duration logic**
+* 🔁 **MySQL → Oracle date function mapping**
+
+Just tell me 👍
