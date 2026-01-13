@@ -1,0 +1,154 @@
+https://www.oracletutorial.com/oracle-basics/
+================================================
+
+Section 1. Querying data :
+=========================
+  This section guides you through querying data from the Oracle Database. We will begin with a simple query that retrieves data from a single table.
+  SELECT – Show you how to query data from a single table
+
+Section 2. Sorting data :
+=========================
+  ORDER BY – sort the result set of a query in ascending or descending order.
+
+Section 3. Filtering data :
+=========================
+  DISTINCT – Eliminate duplicate rows from the output of a query.
+  WHERE – Learn how to specify a condition for rows in the result set returned by a query.
+  AND – Combine two or more Boolean expressions and return true if all expressions are true.
+  OR–  Combine two or more Boolean expressions and return true if one of the expressions is true.
+  IN – Determine if a value matches any value in a list or a subquery.
+  BETWEEN – Filter data based on a range of values.
+  LIKE  – Perform matching based on specific patterns.
+  IS NULL and IS NOT NULL – Check if an expression or value in a column is NULL or not.
+
+Section 4. Joining tables :
+=========================
+  INNER JOIN – Show you how to query rows from a table that has matching rows from another table.
+  LEFT JOIN – Introduce you to the left-join concept and learn how to use it to select rows from the left table that have or don’t have the matching rows in the right table.
+  RIGHT JOIN – Explain the right-join concept and show how to apply it to query rows from the right table that have or don’t have the matching rows in the left table.
+  FULL OUTER JOIN – Describe how to use the full outer join or full join to query data from two tables.
+  CROSS JOIN – Cover how to make a Cartesian product from multiple tables.
+  Self-join – Show you how to join a table with itself to query hierarchical data or compare rows within the same table.
+  A visual explanation of Oracle Joins – A quick recap of joins in Oracle using visual illustrations.
+
+Section 5. Grouping data :
+=========================
+  GROUP BY– Teach you how to group rows into subgroups and apply an aggregate function for each group
+  HAVING – Show you how to filter a group of rows.
+  Grouping sets – Introduce you to the grouping set concepts and show you how to generate multiple grouping sets in a query.
+  CUBE – Learn how to use CUBE to generate subtotals for all possible combinations of a specified group of dimensions.
+  ROLLUP – Describe how to calculate multiple levels of subtotals across a specified group of dimensions.
+
+Section 6. Subquery :
+=========================
+  Subquery – Introduce subqueries and how to use them to perform advanced data selection techniques.
+  Correlated Subquery – Learn about the correlated subquery which is a subquery that depends on the values returned by the outer query.
+  EXISTS and NOT EXISTS – Check for the existence of rows returned by a subquery.
+  ANY, SOME, and ALL – Compare a value to a list or subquery. Note that SOME and ANY are the same so they are interchangeable.
+
+Section 7. Set Operators :
+=========================
+  This section walks you through the steps of using the set operators to combine result sets of two or more independent queries.
+  
+  UNION – Show you how to combine the results of two queries into a single result.
+  INTERSECT – Teach you how to make an intersection of the results of two independent queries.
+  MINUS – Learn how to subtract a result from another.
+
+Section 8. Pivoting Data :
+=========================
+  PIVOT – Show you how to transpose rows to columns to make the crosstab reports.
+  UNPIVOT – Guide to rotating columns into rows.
+
+Section 9. Limiting Rows :
+=========================
+  FETCH – Show you how to limit rows returned by a query using the row limiting clause.
+
+Section 10. Managing Table Structures :
+=====================================
+  This section shows you how to manage the most important database objects including databases and tables.
+  
+  CREATE TABLE – Walk you through the steps of creating new tables in the database.
+  Identity Column – Learn how to use the identity clause to define the identity column for a table.
+  ALTER TABLE – Teach you how to change the structure of existing tables.
+  ALTER TABLE ADD column – Show you how to add one or more columns to an existing table
+  ALTER TABLE MODIFY column – Show you how to change the definition of existing columns in a table.
+  Drop columns – Learn how to use various statements to drop one or more columns from a table.
+  Rename columns – Show you how to rename columns.
+  DROP TABLE – Show you how to delete tables from the database.
+  TRUNCATE TABLE – Delete all data from a table faster and more efficiently.
+  RENAME table –  Walk you through the process of renaming a table and handling its dependent objects.
+  Virtual columns – Introduce you to virtual columns and how to use them in the database tables.
+
+Section 11. Oracle data types :
+=============================
+  Oracle data types – Give you an overview of the built-in Oracle data types.
+  NUMBER – Introduce the numeric data type and show how to use it to define numeric columns for a table.
+  FLOAT – Demystify float data type in Oracle by practical examples.
+  CHAR – Learn about fixed-length character strings.
+  NCHAR –  Show how to store fixed-length Unicode character data and explain the differences between CHAR and NCHAR data types
+  VARCHAR2 – introduce the variable-length character and show how to define variable-length character columns in a table.
+  NVARCHAR2 – learn how to store variable-length Unicode characters in the database.
+  DATE – discuss the date and time data type and show you how to handle date-time data effectively.
+  TIMESTAMP – Show how to store date and time with fractional seconds precision.
+  INTERVAL– focus on the interval data types to store periods.
+  TIMESTAMP WITH TIME ZONE – learn how to store datetime with time zone data.
+
+Section 12. Constraints :
+=============================
+  Primary key  – Explain the primary key concept and show you how to use the primary key constraint to manage the primary key of a table.
+  Foreign key – Introduce you to the foreign key concept and show you use the foreign key constraint to enforce the relationship between tables.
+  NOT NULL constraint – Show you how to ensure a column that does not accept null values.
+  UNIQUE constraint – Discuss how to ensure data stored in a column or a group of columns is unique among rows within a table.
+  CHECK constraint – Walk you through the process of adding logic for checking data before storing them in tables.
+  DEFAULT constraint – Set a default value for a column.
+
+Section 13. Modifying data :
+=============================
+  In this section, you’ll learn how to change the contents of an Oracle database. The SQL commands for modifying data are referred to as Data Manipulation Language (DML).
+  
+  INSERT – Learn how to insert a row into a table.
+  INSERT INTO SELECT – Insert data into a table from the result of a query.
+  INSERT ALL – Discuss multitable insert statements to insert multiple rows into a table or multiple tables.
+  UPDATE – Teach you how to change the existing values of a table.
+  DELETE – Show you how to delete one or more rows from a table.
+  MERGE – Walk you through the steps of performing a mixture of insertion, update, and deletion using a single statement.
+
+Section 14. Temporary tables :
+=============================
+  Global temporary table – Learn about the global temporary tables and how to create a new global temporary table.
+  Private temporary table – Introduce the private temporary table and how to create a new private temporary table.
+
+Section 15. Views :
+=============================
+  Oracle views – Introduce Oracle views.
+  Creating a view – Create a new view.
+  Drop a view – Drop a view from the database.
+  Updatable views – Create updatable views.
+  Inline views – Use inline views to simplify complex queries and condense several separate queries into one query.
+  WITH CHECK OPTION – Ensure modifying data via view resulting in rows that still meet the condition in the WHERE clause of the view’s defining query.
+
+Section 16. Indexes :
+===================
+
+  Oracle index is one of the effective tools for boosting the query performance. However, to use it effectively, you must understand it correctly. This section helps you understand and use Oracle indexes to speed up your queries.
+  
+  Creating a new index – Show you how to use the CREATE INDEX statement to create an index for one or more columns in a table.
+  Removing an index – Learn how to remove an existing index by using the DROP INDEX statement.
+  Unique index – Use unique indexes to enforce the uniqueness of values in the index column or columns.
+  Function-based index – Speed up queries that involve expression which consists of functions.
+  Bitmap index – Use bitmap index on a column or columns that have few distinct values, or low cardinality.
+
+Section 17. Synonyms :
+===================
+
+  Synonym – synonyms provide a level of security by hiding the name and owner of a schema object such as a table or a view.
+  Create synonym – show you how to create a new synonym for a table.
+  Drop a synonym – describe how to drop a synonym from the database.
+
+Section 18. Sequences :
+===================
+
+  Sequences – Give you an overview of sequences.
+  CREATE SEQUENCE – Create a new sequence object in the database.
+  ALTER SEQUENCE – Modify the attributes and behaviors of an existing sequence.
+  DROP SEQUENCE – Drop an existing sequence.
