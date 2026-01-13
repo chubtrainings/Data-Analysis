@@ -1,0 +1,37 @@
+Oracle Database objects:
+
+Tables: Basic storage structures for data organized in rows and columns.
+Indexes: Improve the speed of data retrieval operations by providing quick access paths.
+Views: Virtual tables based on the result of a SELECT query, simplifying data access.
+Sequences: Objects used to generate unique numbers, often for creating primary key values.
+Synonyms: Aliases for database objects, providing alternative names for simplifying access.
+Stored Procedures: Sets of SQL statements stored for execution. They don’t return a value.
+Functions: Sets of SQL statements stored for execution, returning a value.
+Triggers: Sets of instructions executed automatically in response to specific events.
+Packages: Organize related procedures, functions, and PL/SQL constructs for modularization.
+Materialized Views: Views that store the result set physically, improving query performance.
+Constraints: Rules applied to tables to enforce data integrity, such as primary key and foreign key constraints.
+Partitions: Divide large tables and indexes into smaller, more manageable pieces.
+Database Links: Connections to remote databases, allowing communication between them.
+Roles: Named groups of privileges assigned to users, simplifying access control.
+Profiles: Set of resource limits and password policies for database users.
+Clusters: Physical storage structure that groups tables sharing common columns.
+Snapshots: Read-only copies of data from remote databases, updated periodically.
+LOBs (Large Objects): Data types for handling large amounts of data, like BLOBs (Binary LOBs) and CLOBs (Character LOBs).
+Directories: Logical aliases for physical file locations, used in database operations.
+Oracle Object Naming Rules:
+
+Length: Keep names under 30 characters.
+Characters: Use letters, numbers, and underscores.
+Reserved Words: Avoid Oracle reserved words.
+Case: Stick to uppercase (default) unless using double quotes for case sensitivity.
+Special Characters: Use underscores instead of spaces or symbols.
+Global/Local Names: Ensure uniqueness within a schema.
+Quoted Identifiers: Use double quotes if needed, but be aware of case sensitivity.
+Prefixes/Suffixes: Consider using for clarity, e.g., “EMP_” for employee-related objects.
+Example:
+
+table_name
+date_of_birth
+firstname
+"WELCOME & ALL!"
