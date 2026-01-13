@@ -1,0 +1,82 @@
+In Oracle, pseudo columns are called so because they behave like table columns in SQL queries but are not actually stored as columns in the table.
+
+Why they are called Pseudo columns
+
+Pseudo means false or not real.
+
+Oracle pseudo columns:
+
+Look like columns → you can SELECT, WHERE, and sometimes ORDER BY them
+
+Are not physically stored in the table
+
+Are generated dynamically by Oracle at query runtime
+
+Do not appear in DESC table_name
+
+Cannot be INSERTed or UPDATEd (with very few exceptions)
+
+So they are column-like, but not real table columns → hence pseudo columns.
+
+Simple definition
+
+Pseudo columns are special, system-generated values provided by Oracle that act like columns but do not exist in the table definition.
+
+Common Oracle pseudo columns and their purpose
+Pseudo Column	Purpose
+ROWNUM	Assigns a number to each row returned by a query
+ROWID	Physical address of a row in the database
+LEVEL	Used in hierarchical queries
+SYSDATE	Current date & time (technically a function, often grouped conceptually)
+UID	User ID of the current user
+CURRVAL, NEXTVAL	Sequence-generated values
+ORA_ROWSCN	System Change Number of last modification
+Example to understand why it's pseudo
+Table definition
+DESC employees;
+
+
+Output:
+
+EMP_ID
+NAME
+SALARY
+
+
+No ROWNUM here.
+
+But you can still query it
+SELECT emp_id, name, ROWNUM
+FROM employees;
+
+
+✔ ROWNUM behaves like a column
+❌ But it does not exist in the table
+
+Key characteristics (exam-friendly points)
+
+Generated at query execution time
+
+Not stored in the database
+
+Read-only
+
+Used mainly for internal processing, filtering, and query logic
+
+Cannot be indexed
+
+Why Oracle uses pseudo columns
+
+To provide row-level metadata
+
+To enable efficient internal operations
+
+To avoid storing redundant data
+
+To support advanced SQL features (pagination, hierarchy, concurrency)
+
+One-line interview answer
+
+Pseudo columns in Oracle are system-generated values that act like columns in SQL queries but are not physically stored in the table, which is why they are called pseudo columns.
+
+If you want, I can also explain ROWNUM vs ROWID, real columns vs pseudo columns, or exam questions with answers.
