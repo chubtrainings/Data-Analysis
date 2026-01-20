@@ -1,0 +1,101 @@
+https://www.sanfoundry.com/sql-questions-answers-sql-group-by/
+
+SQL Questions and Answers – SQL Group By
+This set of SQL Multiple Choice Questions & Answers (MCQs) focuses on “SQL Group By”.
+
+1. Which clause is used to group the result set based on a common value present in a table?
+a) Common
+b) Sort
+c) Group
+d) Group by
+View Answer
+
+Answer: d
+Explanation: The GROUP BY Statement in SQL is used to arrange the similar data into groups. It is used to group the rows together by common column values.
+2. GROUP BY clause is used with which of the following statements?
+a) Update
+b) Insert
+c) Select
+d) Delete
+View Answer
+
+Answer: c
+Explanation: The GROUP BY clause is used in conjunction with the SELECT statement and aggregate functions to group rows together by identical column values.
+3. GROUP BY statement cannot be used with aggregate functions.
+a) True
+b) False
+View Answer
+
+Answer: b
+Explanation: The GROUP BY statement is often used with aggregate functions to group the result-set by one or more columns based on the given conditions.
+advertisement
+
+4. How many columns or functions can be specified or included in a single GROUP BY clause?
+a) Only one
+b) Less than five by default
+c) Two to ten
+d) One or more
+View Answer
+
+Answer: d
+Explanation: The SQL GROUP BY clause is used to group the result set based on common value present in it. More than one column or function can be specified or included in a GROUP BY clause.
+5. All non aggregate function columns in the SELECT statement must be included in which of the following clause(s)?
+a) Group by
+b) Where
+c) Order by
+d) Having
+View Answer
+
+Answer: a
+Explanation: All the non-aggregate function columns of the SELECT statement must be listed in the GROUP BY clause. Otherwise, the query displays an error.
+⚡ Hurry! Secure Your Free Cyber Security Certification - January 2026
+6. Which of the following provides a correct order of clauses used in SQL?
+a) Where, Order By, Group By, Having
+b) Group By, Order By, Having
+c) Group By, Where
+d) Where, Group By, Order By
+View Answer
+
+Answer: d
+Explanation: In a query, GROUP BY clause is placed after the WHERE clause and placed before ORDER BY clause if used any.
+7. Which of the following is a correct syntax of GROUP BY clause?
+a)SELECT c1, COUNT(c2)
+FROM TABLE_NAME
+GROUP BY c2;
+b)
+
+SELECT c1, COUNT(c2)
+FROM TABLE_NAME
+GROUP BY c1
+WHERE condition;
+c)
+
+SELECT c1, COUNT(c2)
+FROM TABLE_NAME
+GROUP BY c2, c1;
+d)
+
+SELECT c1, COUNT(c2)
+FROM TABLE_NAME
+GROUP BY c2
+ORDER BY c1;
+View Answer
+Answer: c
+Explanation: All columns except aggregate function columns listed in the SELECT statement must be included in GROUP BY clause. GROUP BY should be written after WHERE and before ORDER BY.
+8. In the GROUP BY Clause the grouping is done using the values present in the _________
+a) Entire table
+b) Result set
+c) Database
+d) Order by clause
+View Answer
+
+Answer: b
+Explanation: The grouping of result set is done after all the records have been retrieved from tables i.e. the grouping is done using the values present in the result set.
+9. WHERE clause is used to restrict the groups grouped using GROUP BY.
+a) True
+b) False
+View Answer
+
+Answer: b
+Explanation: The WHERE clause cannot be used to restrict groups. It is used to retrieve rows based on a certain condition, but it cannot be applied to grouped result. The HAVING clause is used to filter the result set of GROUP BY clause.
+
