@@ -1,0 +1,120 @@
+Oracle Date Functions:
+
+Oracle Date & Time Functions – Notes
+=====================================
+ADD_MONTHS:
+-----------
+  Purpose: 
+      -- Adds a specified number of months to a date.
+  Behavior:
+      -- If the resulting month has fewer days, Oracle returns the last day of that month.
+  Example:
+      -- ADD_MONTHS(DATE '2016-02-29', 1)
+  Result: 31-MAR-16
+
+CURRENT_DATE :
+-------------
+
+  Purpose: Returns the current date and time in the session time zone.
+  Note: Depends on the user’s session settings, not the database server.
+      SQL> SELECT CURRENT_DATE FROM dual;
+
+CURRENT_TIMESTAMP :
+----------------------
+  Purpose: Returns the current date and time including fractional seconds and time zone.
+    Note: Uses the session time zone.
+       SQL> SELECT CURRENT_TIMESTAMP FROM dual;
+
+DBTIMEZONE :
+-----------
+  Purpose: Returns the database time zone.
+       SQL> SELECT DBTIMEZONE FROM dual;
+  Use Case: Useful when working with global or distributed systems.
+
+EXTRACT :
+-----------
+    Purpose: Extracts a specific part (YEAR, MONTH, DAY, HOUR, etc.) from a date or timestamp.
+    SQL> EXTRACT(YEAR FROM SYSDATE)
+    Return Type: NUMBER
+
+FROM_TZ :
+-----------
+  Purpose: Converts a TIMESTAMP value into a TIMESTAMP WITH TIME ZONE.
+        FROM_TZ(TIMESTAMP '2017-08-08 08:09:10', '-09:00')
+  Use Case: Required before converting between time zones.
+
+LAST_DAY :
+-----------
+  Purpose: Returns the last day of the month for a given date.
+  LAST_DAY(DATE '2016-02-01')
+  Result: 29-FEB-16
+
+LOCALTIMESTAMP :
+-----------
+  Purpose: Returns the current date and time as a TIMESTAMP, without time zone info.
+  SQL> SELECT LOCALTIMESTAMP FROM dual;
+  Note: Uses session time zone but does not display it.
+
+MONTHS_BETWEEN :
+-----------
+  Purpose: Returns the number of months between two dates.
+  MONTHS_BETWEEN(DATE '2017-07-01', DATE '2017-01-01')
+  Result: 6
+  Note: Can return fractional values.
+
+NEW_TIME :
+-----------
+  Purpose: Converts a date from one time zone to another.
+  NEW_TIME(date, 'AST', 'PST')
+  Limitation: Supports only predefined time zone abbreviations.
+  ⚠️ Deprecated in favor of FROM_TZ + AT TIME ZONE
+
+NEXT_DAY :
+-----------
+  Purpose: Returns the next occurrence of a specified weekday after a given date.
+  NEXT_DAY(DATE '2000-01-01', 'SUNDAY')
+
+ROUND (Date) :
+-----------
+  Purpose: Rounds a date to the nearest unit (MONTH, YEAR, etc.).
+  ROUND(DATE '2017-07-16', 'MM')
+  Result: 01-AUG-17
+
+SESSIONTIMEZONE :
+-----------
+  Purpose: Returns the current session’s time zone.
+  SQL> SELECT SESSIONTIMEZONE FROM dual;
+
+SYSDATE:
+-----------
+  Purpose: Returns the current database server system date and time.
+  SYSDATE 
+    Note: Does not include fractional seconds or time zone.
+
+SYSTIMESTAMP :
+-----------
+  Purpose: Returns the system date and time with fractional seconds and time zone.
+  SQL> SELECT SYSTIMESTAMP FROM dual;
+
+TO_CHAR (Date) :
+-----------
+  Purpose: Converts a DATE or TIMESTAMP to a formatted string.
+  TO_CHAR(DATE '2017-01-01', 'DL')
+  Use Case: Formatting dates for reports and UI.
+
+TO_DATE :
+-----------
+  Purpose: Converts a character string into a DATE value.
+  TO_DATE('01 Jan 2017', 'DD MON YYYY')
+  Important: Format mask must exactly match the input string.
+
+TRUNC (Date) :
+-----------
+  Purpose: Removes the time portion or truncates a date to a specific unit.
+  TRUNC(DATE '2017-07-16', 'MM')
+  Result: 01-JUL-17
+
+TZ_OFFSET :
+-----------
+Purpose: Returns the UTC offset of a given time zone.
+TZ_OFFSET('Europe/London')
