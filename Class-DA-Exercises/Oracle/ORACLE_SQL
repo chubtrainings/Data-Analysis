@@ -5,10 +5,8 @@ ORACLE SQL Languages :
     CREATE Operations:
     ===================
          SQL> create table emp(id number,name varchar2(25),dob date,place number);
-      
-      CREATE a table copy from existing table with data (CTAS Method):
+         SQL> CREATE a table copy from existing table with data (CTAS Method):
          SQL> create table emp as select * from employee;
-      
       ALTER Operations:
     ===================
           SQL> alter table emp rename column dob to data_of_birth;
@@ -16,39 +14,32 @@ ORACLE SQL Languages :
           SQL> alter table emp drop column place;
           SQL> alter table emp add salary number(8,2);
           SQL> alter table emp rename to employee;
-      
       DROP Operation:
       ===================
          SQL> drop table emp;
-      
       TRUNCATE Operation:
       ===================
          SQL> truncate table emp;
-      
       COMMENT for Column:
       ===================
          SQL> comment on column employee.name is 'emp name';
 
 2. Data Manipulation Language (DML): INSERT, UPDATE, DELETE and MERGE.
+
     INSERT Operations:
     ===================
           SQL> insert into employee values(1,'mani','16-apr-1992',30000);
           SQL> insert into employee (id,name)values(2,'arun');
           SQL> insert into employee values(&id,'&name','&date_of_birth',&salary);
-    
-    
-    
     UPDATE Operations:
     ===================
      SQL> update employee set data_of_birth='23-sep-1998' where id=2;
      SQL> update employee set name='madhan',salary=50000 where id=1;
      SQL> update set a.age=b.age when not matched then insert (id,age)values(b.id,b.age);
-    
     DELETE Operations
     ===================
      SQL> delete from employee where id=3;
      SQL> delete from employee;
-    
     MERGE Operation:
     ===================
      SQL> merge into employee a using salary b on (a.id=b.id) when matched then
