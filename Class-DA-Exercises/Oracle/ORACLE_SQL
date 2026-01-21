@@ -7,6 +7,7 @@ ORACLE SQL Languages :
          SQL> create table emp(id number,name varchar2(25),dob date,place number);
          SQL> CREATE a table copy from existing table with data (CTAS Method):
          SQL> create table emp as select * from employee;
+
       ALTER Operations:
     ===================
           SQL> alter table emp rename column dob to data_of_birth;
@@ -14,15 +15,54 @@ ORACLE SQL Languages :
           SQL> alter table emp drop column place;
           SQL> alter table emp add salary number(8,2);
           SQL> alter table emp rename to employee;
+
       DROP Operation:
       ===================
          SQL> drop table emp;
+
       TRUNCATE Operation:
       ===================
          SQL> truncate table emp;
+
       COMMENT for Column:
       ===================
-         SQL> comment on column employee.name is 'emp name';
+              In Oracle, you add comments to tables and columns using the COMMENT statement.
+               SQL> comment on column employee.name is 'emp name';
+          
+              Add a comment to a table
+              ======================================
+                     SQL> COMMENT ON TABLE patients IS 'Stores patient demographic information';
+              
+              Add a comment to a column
+               =================== ===================
+                     SQL> COMMENT ON COLUMN patients.patient_id IS 'Primary key of patients table';
+                     SQL> COMMENT ON COLUMN patients.birth_date IS 'Date of birth of the patient';
+                     SQL> COMMENT ON COLUMN patients.province_id IS 'Province code referencing province_names';
+              
+              View comments:
+              ===================
+                  Table comments:
+                   SQL> 
+                      SELECT table_name, comments
+                      FROM user_tab_comments
+                      WHERE table_name = 'PATIENTS';
+              
+              Column comments:
+                     SQL> 
+                      SELECT table_name, column_name, comments
+                      FROM user_col_comments
+                      WHERE table_name = 'PATIENTS';
+              
+              Update / remove a comment:
+              ==========================
+              Just re-run the command:
+                     SQL> COMMENT ON TABLE patients IS NULL;
+              
+              Best practice:
+              ==============
+                --> Use comments for business meaning, not obvious SQL
+                --> Always comment PKs, FKs, and important columns
+                --> Helpful for data dictionary & audits
 
 2. Data Manipulation Language (DML): INSERT, UPDATE, DELETE and MERGE.
 
@@ -36,16 +76,17 @@ ORACLE SQL Languages :
      SQL> update employee set data_of_birth='23-sep-1998' where id=2;
      SQL> update employee set name='madhan',salary=50000 where id=1;
      SQL> update set a.age=b.age when not matched then insert (id,age)values(b.id,b.age);
+    
     DELETE Operations
     ===================
      SQL> delete from employee where id=3;
      SQL> delete from employee;
+    
     MERGE Operation:
     ===================
      SQL> merge into employee a using salary b on (a.id=b.id) when matched then
 
 3. Data Control Language (DCL): GRANT and REVOKE.
-
      SQL> grant select on employee to siva;
      SQL> grant insert,update on salary to siva;
      SQL> revoke update on salary from siva;
