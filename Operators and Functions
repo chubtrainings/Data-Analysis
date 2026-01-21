@@ -1,0 +1,97 @@
+Oracle Operators and Functions
+
+Arithmetic Operators:
+	+ (Addition)
+	– (Subtraction)
+	* (Multiplication)
+	/ (Division)
+	% (Modulus)
+
+Comparison Operators:
+	= (Equal to)
+	!= or <> (Not equal to)
+	< (Less than)
+	> (Greater than)
+	<= (Less than or equal to)
+	>= (Greater than or equal to)
+
+Logical Operators:
+	AND (Logical AND)
+	OR (Logical OR)
+	NOT (Logical NOT)
+
+Others:
+	Concatenation Operator (Concat or ||)
+	In
+	Between
+	Null
+	Like (%,_)
+
+Functions:
+	Functions take one or more parameters as input, perform a computation or operation, and then return a result.
+
+Predefined Functions and (User Defined Functions):
+	Scalar functions
+	Character or string Functions
+	Numeric Functions
+	Date Functions
+	Conversion Function
+	Miscellaneous Function
+	Aggregate Functions
+	Count
+	Sum
+	Avg
+	Max
+	Min
+	Group by
+	Having
+	Order by
+	
+Character or string Functions:
+	Concat
+	Length
+	Substr
+	Instr
+	Lpad
+	Rpad
+	Trim
+	Lower
+	Upper
+	Initcap
+
+Numeric Functions:
+	Ascii
+	Abs
+	Ceil
+	Floor
+	Round
+	Power
+	Sqr
+	Greatest
+	least
+	Mod
+	Sign
+
+Date functions:
+	Sysdate
+	Systimestamp
+	Months_between
+	Add_months
+	Last_date
+	Next_day
+	Round
+	Trunc
+
+Conversion functions:
+	To_char
+	To_date
+	To_number
+
+Miscellaneous Functions:
+	Nvl
+	Nvl2
+	Nullif
+	Coalesce
+	Decode
+	Case
+	Vsize
