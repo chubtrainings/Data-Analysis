@@ -1,85 +1,75 @@
 ORACLE SQL Languages :
 =========================
- Data Definition Language (DDL): CREATE, ALTER, DROP, TRUNCATE, RENAME AND COMMENT.
-CREATE Operations:
-create table emp(id number,name varchar2(25),dob date,place number);
+1. Data Definition Language (DDL): CREATE, ALTER, DROP, TRUNCATE, RENAME AND COMMENT.
+  
+    CREATE Operations:
+    ===================
+         SQL> create table emp(id number,name varchar2(25),dob date,place number);
+      
+      CREATE a table copy from existing table with data (CTAS Method):
+         SQL> create table emp as select * from employee;
+      
+      ALTER Operations:
+    ===================
+          SQL> alter table emp rename column dob to data_of_birth;
+          SQL> alter table emp modify (place varchar(50));
+          SQL> alter table emp drop column place;
+          SQL> alter table emp add salary number(8,2);
+          SQL> alter table emp rename to employee;
+      
+      DROP Operation:
+      ===================
+         SQL> drop table emp;
+      
+      TRUNCATE Operation:
+      ===================
+         SQL> truncate table emp;
+      
+      COMMENT for Column:
+      ===================
+         SQL> comment on column employee.name is 'emp name';
 
-CREATE a table copy from existing table with data (CTAS Method):
-create table emp as select * from employee;
+2. Data Manipulation Language (DML): INSERT, UPDATE, DELETE and MERGE.
+    INSERT Operations:
+    ===================
+          SQL> insert into employee values(1,'mani','16-apr-1992',30000);
+          SQL> insert into employee (id,name)values(2,'arun');
+          SQL> insert into employee values(&id,'&name','&date_of_birth',&salary);
+    
+    
+    
+    UPDATE Operations:
+    ===================
+     SQL> update employee set data_of_birth='23-sep-1998' where id=2;
+     SQL> update employee set name='madhan',salary=50000 where id=1;
+     SQL> update set a.age=b.age when not matched then insert (id,age)values(b.id,b.age);
+    
+    DELETE Operations
+    ===================
+     SQL> delete from employee where id=3;
+     SQL> delete from employee;
+    
+    MERGE Operation:
+    ===================
+     SQL> merge into employee a using salary b on (a.id=b.id) when matched then
 
-ALTER Operations:
-alter table emp rename column dob to data_of_birth;
+3. Data Control Language (DCL): GRANT and REVOKE.
 
-alter table emp modify (place varchar(50));
+     SQL> grant select on employee to siva;
+     SQL> grant insert,update on salary to siva;
+     SQL> revoke update on salary from siva;
 
-alter table emp drop column place;
+3. Transaction Control Language (TCL): COMMIT, ROLLBACK, and SAVEPOINT.
+     SQL> show autocommit;
+     commit;
+     rollback;
+     savepoint a;
+     savepoint b;
+     savepoint c;
+     savepoint d;
+     rollback to b;
 
-alter table emp add salary number(8,2);
-
-alter table emp rename to employee;
-
-DROP Operation:
-drop table emp;
-
-TRUNCATE Operation:
-truncate table emp;
-
-COMMENT for Column:
-comment on column employee.name is 'emp name';
-
-Data Manipulation Language (DML): INSERT, UPDATE, DELETE and MERGE.
-INSERT Operations:
-insert into employee values(1,'mani','16-apr-1992',30000);
-
-insert into employee (id,name)values(2,'arun');
-
-insert into employee values(&id,'&name','&date_of_birth',&salary);
-
-/
-
-UPDATE Operations:
-update employee set data_of_birth='23-sep-1998' where id=2;
-
-update employee set name='madhan',salary=50000 where id=1;
-
-update set a.age=b.age when not matched then insert (id,age)values(b.id,b.age);
-
-DELETE Operations:
-delete from employee where id=3;
-
-delete from employee;
-
-MERGE Operation:
-merge into employee a using salary b on (a.id=b.id) when matched then
-
-Data Control Language (DCL): GRANT and REVOKE.
-
-grant select on employee to siva;
-
-grant insert,update on salary to siva;
-
-revoke update on salary from siva;
-
-Transaction Control Language (TCL): COMMIT, ROLLBACK, and SAVEPOINT.
-show autocommit;
-
-commit;
-
-rollback;
-
-savepoint a;
-
-savepoint b;
-
-savepoint c;
-
-savepoint d;
-
-rollback to b;
-
-Data Retrieval Language (DRL): SELECT.
-select * from employee;
-
-select id,name from employee;
-
-select name from employee where id=2;
+4. Data Retrieval Language (DRL): SELECT.
+     SQL> select * from employee;
+     SQL> select id,name from employee;
+     SQL> select name from employee where id=2;
